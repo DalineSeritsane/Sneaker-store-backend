@@ -1,5 +1,4 @@
 require("dotenv").config(); // Load env vars
-const port = process.env.PORT || 5000;
 const BASE_URL = process.env.BASE_URL;
 
 const express = require("express");
@@ -206,10 +205,7 @@ app.post('/getcart', fetchUser, async (req,res)=>{
 }) 
 
 // Start Server
-app.listen(port, (error) => {
-  if (!error) {
-    console.log(`Server Running on Port ${port}`);
-  } else {
-    console.log("Error : " + error);
-  }
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
