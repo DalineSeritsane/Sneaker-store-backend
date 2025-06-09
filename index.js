@@ -1,4 +1,7 @@
-const port = 5000;
+require("dotenv").config(); // Load env vars
+const port = process.env.PORT || 5000;
+const BASE_URL = process.env.BASE_URL;
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -41,7 +44,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`
+    image_url:  `${BASE_URL}/images/${req.file.filename}`
   });
 });
 
@@ -205,7 +208,7 @@ app.post('/getcart', fetchUser, async (req,res)=>{
 // Start Server
 app.listen(port, (error) => {
   if (!error) {
-    console.log("Server Running on Port " + port);
+    console.log(`Server Running on Port ${port}`);
   } else {
     console.log("Error : " + error);
   }
